@@ -1,0 +1,22 @@
+{
+  "name": "card-crud",
+  "version": "1.0.0",
+  "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://luansena@bitbucket.org/luansena/card-crud.git"
+  },
+  "keywords": [
+    "card-crud"
+  ],
+  "author": "luan sena",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/luansena/card-crud#readme",
+  "dependencies": {
+    "hapi": "^17.3.1"
+  }
+}
