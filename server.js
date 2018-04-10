@@ -9,6 +9,7 @@ const server = Hapi.server({
 
 server.route(require('./server/routes/card'));
 
+
 const init = async () => {
     await server.register(
       {
@@ -19,6 +20,7 @@ const init = async () => {
         }
       }
     )
+
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
 };

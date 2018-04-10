@@ -26,20 +26,10 @@ module.exports = [
     // },
     {
         method: 'GET',
-        path: '/{name}',
+        path: '/hello/{name}',
         handler: (request, h) => {
     
-            return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
+            return h.response('Hello, ' + encodeURIComponent(request.params.name) + '!').code(202);
         }
-    },
-    // {
-    //     method: 'GET',
-    //     path: '/start',
-    //     handler: {
-    //         directory: {
-    //             path: '../../dashboard/build',
-    //             index: ['index.html']
-    //         }
-    //     }
-    // },
+    }
 ];
