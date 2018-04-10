@@ -1,7 +1,6 @@
 'use strict';
 
 const Hapi = require('hapi');
-const hmysql = require('hapi-plugin-mysql');
 const server = Hapi.server({
     port: 3001,
     host: 'localhost'

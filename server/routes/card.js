@@ -1,9 +1,9 @@
 module.exports = [
-    // {
-    //     method: 'GET',
-    //     path: '/card',
-    //     handler: require('../handlers/card/list')
-    // },
+    {
+        method: 'GET',
+        path: '/card',
+        handler: require('../handlers/card/list')
+    },
     // {
     //     method: 'GET',
     //     path: '/card/{cardId}',
