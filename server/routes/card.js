@@ -19,11 +19,11 @@ module.exports = [
         path: '/card/{cardId}',
         handler: require('../handlers/card/delete')
     },
-    // {
-    //     method: 'PATCH',
-    //     path: '/card/{cardId}',
-    //     handler: require('../handlers/card/update')
-    // },
+    {
+        method: 'PATCH',
+        path: '/card/{cardId}',
+        handler: require('../handlers/card/update')
+    },
     {
         method: 'GET',
         path: '/hello/{name}',
