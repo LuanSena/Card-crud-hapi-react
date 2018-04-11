@@ -17,6 +17,8 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/luansena/card-crud#readme",
   "dependencies": {
-    "hapi": "^17.3.1"
+    "boom": "^7.2.0",
+    "hapi": "^17.3.1",
+    "hapi-mysql2": "^2.0.3"
   }
 }
