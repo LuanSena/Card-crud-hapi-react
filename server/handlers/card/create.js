@@ -3,7 +3,8 @@ const Joi = require('joi')
 
 module.exports = async function (request, h) {
   const Boom = require('hapi');	
-  const pool = request.mysql.pool    
+  const jwt = require('jwt-js').TokenSigner
+  const pool = request.mysql.pool
   try {
     var schema = Joi.object().keys(
       {
@@ -16,12 +17,19 @@ module.exports = async function (request, h) {
 
     const validation = Joi.validate(data, schema)
     if (validation.error) {
-      console.log(validation.error.details)
       return h.response(validation.error.details).code(400)
     }
-    console.log(data)
-    // const [rows, fields] = await pool.query(`select * from card where ID=${request.params.cardId};`)
-    return h.response(rows).code(200)
+    const objectHash = new jwt('ES256k','hadouken').sign(data)
+    const [row, fields] = await pool.query(`select ID from card where hash="${objectHash}";`)
+    if (row.length === 0){
+        await pool.query(`insert into card(hash) values("${objectHash}");`)
+        const [rowid, fields] = await pool.query(`select ID from card where hash="${objectHash}";`)
+        const newObject = Object.assign({}, data, rowid[0])
+        return h.response(newObject).code(201)
+    } else {
+        const registredObject = Object.assign({}, data, row[0])
+        return h.response(registredObject).code(200)
+    }
   } catch (err) {
   	console.log(err)
     throw Boom.internal('Internal Mysql Error', err)
