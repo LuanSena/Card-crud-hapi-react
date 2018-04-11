@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
+import CardRepresentation from '../cardRepresentation'
 
 class CardModal extends Component {
   render() {
@@ -8,41 +9,42 @@ class CardModal extends Component {
           <Modal.Title>Cadastro do cartão</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <CardRepresentation/>
         <form className="form-inline">
         <FormGroup
           controlId="formBasicText"
           validationState={() => console.log("this.getValidationState(")}
         >
           <FormControl
-            style={{width: '50%', borderRadius: 0}}
+            style={{width: '40%', borderRadius: 0}}
             type="text"
             // value={this.state.value}
             placeholder="Número do cartão"
             // onChange={this.handleChange}
           />
           <FormControl
-            style={{width: '50%', borderRadius: 0}}
+            style={{width: '40%', borderRadius: 0}}
             type="text"
             // value={this.state.value}
             placeholder="Nome do portador"
             // onChange={this.handleChange}
           />
           <FormControl
-            style={{width: '30%', borderRadius: 0}}
+            style={{width: '20%', borderRadius: 0}}
             type="text"
             // value={this.state.value}
             placeholder="Data de vencimento"
             // onChange={this.handleChange}
           />
           <FormControl
-            style={{width: '30%', borderRadius: 0}}
+            style={{width: '20%', borderRadius: 0}}
             type="text"
             // value={this.state.value}
             placeholder="CVV"
             // onChange={this.handleChange}
           />
           <Button
-            style={{width: '40%', borderRadius: 0}}
+            style={{width: '30%', borderRadius: 0}}
             bsStyle="primary"
             className="form-control"
           >Enviar</Button>
