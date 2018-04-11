@@ -9,16 +9,16 @@ module.exports = [
         path: '/card/{cardId}',
         handler: require('../handlers/card/read')
     },
-    // {
-    //     method: 'POST',
-    //     path: '/card',
-    //     handler: require('../handlers/card/create')
-    // },
-    // {
-    //     method: 'DELETE',
-    //     path: '/card/{cardId}',
-    //     handler: require('../handlers/card/delete')
-    // },
+    {
+        method: 'POST',
+        path: '/card',
+        handler: require('../handlers/card/create')
+    },
+    {
+        method: 'DELETE',
+        path: '/card/{cardId}',
+        handler: require('../handlers/card/delete')
+    },
     // {
     //     method: 'PATCH',
     //     path: '/card/{cardId}',
