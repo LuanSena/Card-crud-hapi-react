@@ -72,7 +72,6 @@ class CardModal extends Component {
         <form className="form-inline">
         <FormGroup
           controlId="formBasicText"
-          validationState={() => console.log("this.getValidationState(")}
         >
           <FormControl
             style={{width: '40%', borderRadius: 0}}
