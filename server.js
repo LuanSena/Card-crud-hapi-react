@@ -3,7 +3,10 @@
 const Hapi = require('hapi');
 const server = Hapi.server({
     port: 3001,
-    host: 'localhost'
+    host: 'localhost',
+    routes: {
+      cors: true
+  }
 });
 
 server.route(require('./server/routes/card'));
