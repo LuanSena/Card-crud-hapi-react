@@ -5,7 +5,7 @@ class CardRepresentation extends Component {
   render() {
       var flip_front = this.props.showFront ? "flip__front shown" : "flip__front"
       var flip_back = this.props.showFront ? "flip__back": "flip__back shown"
-      var flip_rotate = this.props.showFront ? "0": "rotateY(180deg)"
+      var flip_rotate = this.props.showFront ? "rotateY(0deg)": "rotateY(180deg)"
     return (<div className="card">
     <div className="flip" style={{transform: flip_rotate}}>
       <div className={flip_front}>
