@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
+import { Modal, Button, FormGroup, FormControl } from 'react-bootstrap'
 import CardRepresentation from '../cardRepresentation'
 
 class CardModal extends Component {

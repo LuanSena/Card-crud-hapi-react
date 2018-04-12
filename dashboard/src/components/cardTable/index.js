@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 import './style.css';
 
