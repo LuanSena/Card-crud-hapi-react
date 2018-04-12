@@ -17,7 +17,7 @@ const init = async () => {
       {
         plugin: require('hapi-mysql2'),
         options: {
-          settings: 'mysql://root:toor@localhost/upnid',
+          settings: process.env.DB_CONN_STRING,
           decorate: true
         }
       }
