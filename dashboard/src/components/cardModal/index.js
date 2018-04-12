@@ -9,12 +9,15 @@ class CardModal extends Component {
       name: '',
       expiration: '',
       cvv: '',
-      number: ''
+      number: '',
+      showFront: true
     }
     this.handleChangeCvv = this.handleChangeCvv.bind(this)
     this.handleChangeExpiration = this.handleChangeExpiration.bind(this)
     this.handleChangeName = this.handleChangeName.bind(this)
     this.handleChangeNumber = this.handleChangeNumber.bind(this)
+    this.handleFocusCvv = this.handleFocusCvv.bind(this)
+    this.handleBlurCvv = this.handleBlurCvv.bind(this)
   }
 
   async handleChangeCvv (event) {
@@ -33,6 +36,14 @@ class CardModal extends Component {
     await this.setState({ number: event.target.value })
   }
 
+  async handleFocusCvv () {
+    await this.setState({ showFront: false })
+  }
+
+  async handleBlurCvv () {
+    await this.setState({ showFront: true })
+  }
+
   render() {
     return (<Modal show={this.props.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
@@ -40,6 +51,7 @@ class CardModal extends Component {
         </Modal.Header>
         <Modal.Body>
         <CardRepresentation
+          showFront={this.state.showFront}
           name={this.state.name}
           number={this.state.number} 
           cvv={this.state.cvv}
@@ -75,6 +87,8 @@ class CardModal extends Component {
             style={{width: '20%', borderRadius: 0}}
             type="text"
             value={this.state.cvv}
+            onFocus={this.handleFocusCvv}
+            onBlur={this.handleBlurCvv}
             placeholder="CVV"
             onChange={this.handleChangeCvv}
           />
