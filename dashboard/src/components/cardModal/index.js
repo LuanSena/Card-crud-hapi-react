@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, FormGroup, FormControl } from 'react-bootstrap'
+import InputMask from 'react-input-mask'
 import CardRepresentation from '../cardRepresentation'
 
 class CardModal extends Component {
@@ -104,7 +105,9 @@ class CardModal extends Component {
         <FormGroup
           controlId="formCard"
         >
-          <FormControl
+          <InputMask
+            className="form-control"
+            mask="9999-9999-9999-9999" maskChar=" "
             style={{width: '40%', borderRadius: 0}}
             type="text"
             value={this.state.number}
@@ -115,17 +118,21 @@ class CardModal extends Component {
             style={{width: '40%', borderRadius: 0}}
             type="text"
             value={this.state.company}
-            placeholder="Nome do portador"
+            placeholder="Portador"
             onChange={this.handleChangeName}
           />
-          <FormControl
+          <InputMask
+            className="form-control"
+            mask="99/99" maskChar=" "
             style={{width: '20%', borderRadius: 0}}
             type="text"
             value={this.state.expiration}
-            placeholder="Data de vencimento"
+            placeholder="Vencimento"
             onChange={this.handleChangeExpiration}
           />
-          <FormControl
+          <InputMask
+            className="form-control"
+            mask="999" maskChar=" "
             style={{width: '20%', borderRadius: 0}}
             type="text"
             value={this.state.cvv}
