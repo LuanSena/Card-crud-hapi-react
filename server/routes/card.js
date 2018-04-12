@@ -1,34 +1,33 @@
 module.exports = [
     {
         method: 'GET',
-        path: '/card',
+        path: '/v1/card',
         handler: require('../handlers/card/list')
     },
     {
         method: 'GET',
-        path: '/card/{cardId}',
+        path: '/v1/card/{cardId}',
         handler: require('../handlers/card/read')
     },
     {
         method: 'POST',
-        path: '/card',
+        path: '/v1/card',
         handler: require('../handlers/card/create')
     },
     {
         method: 'DELETE',
-        path: '/card/{cardId}',
+        path: '/v1/card/{cardId}',
         handler: require('../handlers/card/delete')
     },
     {
         method: 'PATCH',
-        path: '/card/{cardId}',
+        path: '/v1/card/{cardId}',
         handler: require('../handlers/card/update')
     },
     {
         method: 'GET',
-        path: '/hello/{name}',
+        path: '/v1/hello/{name}',
         handler: (request, h) => {
-    
             return h.response('Hello, ' + encodeURIComponent(request.params.name) + '!').code(202);
         }
     }
