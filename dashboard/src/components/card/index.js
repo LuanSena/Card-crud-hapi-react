@@ -7,14 +7,18 @@ import WebService from '../../services/webService';
 class Card extends Component {
     constructor (props) {
         super(props)
-        this.state = { 
+        this.state = {
           showModal: false,
+          editingCard: {},
+          editMode: false,
           cards: []
         }
         this.webService = new WebService()
         this.handleShowModal = this.handleShowModal.bind(this)
         this.handleDeleteCard = this.handleDeleteCard.bind(this)
         this.handleInsertCard = this.handleInsertCard.bind(this)
+        this.handleUpdateCard = this.handleUpdateCard.bind(this)
+        this.handleSaveUpdatedCard = this.handleSaveUpdatedCard.bind(this)
       }
   async componentWillMount () {
     const result = await this.webService.getCards()
@@ -34,14 +38,18 @@ class Card extends Component {
     this.setState({cards: newCards})
   }
 
-  async handleUpdateCard (cardId) {
-    // await this.webService.deleteCard(cardId)
-    const result = this.state.cards.filter(card => card.ID !== cardId)
-    this.setState({cards: result})
+  async handleUpdateCard (card) {
+    await this.setState({editingCard: card, editMode: true})
+    await this.handleShowModal()
   }
 
   async handleShowModal () {
       await this.setState({showModal: !this.state.showModal})
+  }
+
+  async handleSaveUpdatedCard (cardId, card) {
+    await this.webService.patchCard(cardId, card)
+    this.setState({editMode: false})
   }
 
 
@@ -54,13 +62,19 @@ class Card extends Component {
               <Glyphicon glyph="plus" /> Novo cartão
           </Button>
           
-          <CardModal 
+          <CardModal
+            edit={this.state.editMode}
+            editingCard={this.state.editingCard}
+            saveUpdatedCard={this.handleSaveUpdatedCard}
             show={this.state.showModal}
             close={this.handleShowModal}
             insertCard={this.handleInsertCard}
           />
           
-          <CardTable cards={this.state.cards} deleteCard={this.handleDeleteCard}/>
+          <CardTable 
+            cards={this.state.cards}
+            deleteCard={this.handleDeleteCard}
+            updateCard={this.handleUpdateCard} />
         </Grid>
       </div>)
   

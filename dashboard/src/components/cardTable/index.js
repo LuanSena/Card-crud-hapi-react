@@ -8,11 +8,12 @@ class CardTable extends Component {
     this.state = { }
     this.cellButton = this.cellButton.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
+    this.updateCard = this.updateCard.bind(this)
   }
   cellButton (cell, row, enumObject, rowIndex) {
     const actions = (
     <div>
-      <a onClick={() => console.log(cell, row, rowIndex)} style={{marginRight: '10px'}}>
+      <a onClick={() => this.updateCard(cell, row, rowIndex)} style={{marginRight: '10px'}}>
       <Glyphicon glyph="pencil" />
     </a>
     <a onClick={() => this.deleteCard(cell, row, rowIndex)}>
@@ -22,10 +23,14 @@ class CardTable extends Component {
     return actions
   }
 
+  updateCard (cell, row, rowIndex) {
+    this.props.updateCard(row)
+  }
+
   deleteCard (cell, row, rowIndex) {
     // console.log(row.ID)
     this.props.deleteCard(row.ID)
-}
+  }
 
   render() {
     return (

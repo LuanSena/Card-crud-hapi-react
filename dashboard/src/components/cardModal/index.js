@@ -6,7 +6,7 @@ class CardModal extends Component {
   constructor (props) {
     super(props)
     this.state = { 
-      name: '',
+      company: '',
       expiration: '',
       cvv: '',
       number: '',
@@ -20,6 +20,17 @@ class CardModal extends Component {
     this.handleBlurCvv = this.handleBlurCvv.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillReceiveProps (next){
+    const card = next.editingCard
+    this.setState({
+      ID: card.ID,
+      company: card.company,
+      expiration: card.expiration,
+      cvv: card.cvv,
+      number: card.number,
+    })
   }
 
   async handleChangeCvv (event) {
@@ -58,8 +69,12 @@ class CardModal extends Component {
   }
 
   async handleSubmit () {
-    //   console.log(this.state)
-   await this.props.insertCard(this.state)
+   if (this.props.editMode){
+       await this.props.saveUpdatedCard(this.state.ID,this.state)
+   } 
+   else {
+     await this.props.insertCard(this.state)
+   }
    this.handleClose()
   }
 
