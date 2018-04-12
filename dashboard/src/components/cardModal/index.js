@@ -19,6 +19,7 @@ class CardModal extends Component {
     this.handleFocusCvv = this.handleFocusCvv.bind(this)
     this.handleBlurCvv = this.handleBlurCvv.bind(this)
     this.handleClose = this.handleClose.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   async handleChangeCvv (event) {
@@ -30,7 +31,7 @@ class CardModal extends Component {
   }
 
   async handleChangeName (event) {
-    await this.setState({ name: event.target.value })
+    await this.setState({ company: event.target.value })
   }
 
   async handleChangeNumber (event) {
@@ -47,13 +48,19 @@ class CardModal extends Component {
 
   async handleClose () {
       this.setState({ 
-        name: '',
+        company: '',
         expiration: '',
         cvv: '',
         number: '',
         showFront: true
       })
       this.props.close()
+  }
+
+  async handleSubmit () {
+    //   console.log(this.state)
+   await this.props.insertCard(this.state)
+   this.handleClose()
   }
 
   render() {
@@ -64,14 +71,14 @@ class CardModal extends Component {
         <Modal.Body>
         <CardRepresentation
           showFront={this.state.showFront}
-          name={this.state.name}
+          name={this.state.company}
           number={this.state.number} 
           cvv={this.state.cvv}
           expiration={this.state.expiration}
         />
         <form className="form-inline">
         <FormGroup
-          controlId="formBasicText"
+          controlId="formCard"
         >
           <FormControl
             style={{width: '40%', borderRadius: 0}}
@@ -83,7 +90,7 @@ class CardModal extends Component {
           <FormControl
             style={{width: '40%', borderRadius: 0}}
             type="text"
-            value={this.state.name}
+            value={this.state.company}
             placeholder="Nome do portador"
             onChange={this.handleChangeName}
           />
@@ -107,6 +114,7 @@ class CardModal extends Component {
             style={{width: '30%', borderRadius: 0}}
             bsStyle="primary"
             className="form-control"
+            onClick={this.handleSubmit}
           >Enviar</Button>
           <FormControl.Feedback />
         </FormGroup>
