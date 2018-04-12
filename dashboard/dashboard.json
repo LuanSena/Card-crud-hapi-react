@@ -1,0 +1,7 @@
+{"apps":[
+    {
+        "name": "dashboard",
+        "script": "npm",
+        "args": "start"
+    }
+]}
