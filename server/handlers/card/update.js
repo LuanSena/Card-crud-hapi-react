@@ -14,17 +14,18 @@ module.exports = async function (request, h) {
         company: Joi.string().required()
       }),
       data = request.payload;
-
+    
+    const cardId = request.params.cardId
     const validation = Joi.validate(data, schema)
     if (validation.error) {
       return h.response(validation.error.details).code(400)
     }
     const objectHash = new jwt('ES256k','hadouken').sign(data)
-    const [row, fields] = await pool.query(`select ID from card where hash="${objectHash}";`)
+    const [row, fields] = await pool.query(`select ID from card where ID=${cardId};`)
     if (row.length === 0){
         return h.response({message: 'Object not found'}).code(404)
     } else {
-        await pool.query(`update card(hash) values("${objectHash}");`)
+        await pool.query(`UPDATE card SET hash="${objectHash}" WHERE ID=${cardId};`)
         const [rowid, fields] = await pool.query(`select ID from card where hash="${objectHash}";`)
         const registredObject = Object.assign({}, data, rowid[0])
         return h.response(registredObject).code(200)

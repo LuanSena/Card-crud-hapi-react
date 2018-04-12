@@ -56,10 +56,7 @@ class Card extends Component {
 
   async handleSaveUpdatedCard (cardId, card) {
     await this.webService.patchCard(cardId, card)
-    const actualCards = this.state.cards
-    const cleanCards = actualCards.filter(card => card.ID !== cardId)
-    const newCards = cleanCards.push(card)
-    this.setState({editMode: false, cards: newCards})
+    window.location.reload();
   }
 
 
