@@ -23,6 +23,7 @@ class CardModal extends Component {
   }
 
   componentWillReceiveProps (next){
+    if (this.props.edit){
     const card = next.editingCard
     this.setState({
       ID: card.ID,
@@ -31,6 +32,7 @@ class CardModal extends Component {
       cvv: card.cvv,
       number: card.number,
     })
+   }
   }
 
   async handleChangeCvv (event) {
@@ -69,11 +71,18 @@ class CardModal extends Component {
   }
 
   async handleSubmit () {
-   if (this.props.editMode){
-       await this.props.saveUpdatedCard(this.state.ID,this.state)
+   const card = {
+       company: this.state.company,
+       number: this.state.number,
+       expiration: this.state.expiration,
+       cvv: this.state.cvv
+   }
+   if (this.props.edit){
+       await this.props.saveUpdatedCard(this.state.ID, card)
    } 
    else {
-     await this.props.insertCard(this.state)
+       console.log(card)
+     await this.props.insertCard(card)
    }
    this.handleClose()
   }

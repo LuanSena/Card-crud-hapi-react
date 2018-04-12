@@ -28,7 +28,6 @@ class CardTable extends Component {
   }
 
   deleteCard (cell, row, rowIndex) {
-    // console.log(row.ID)
     this.props.deleteCard(row.ID)
   }
 

@@ -19,6 +19,7 @@ class Card extends Component {
         this.handleInsertCard = this.handleInsertCard.bind(this)
         this.handleUpdateCard = this.handleUpdateCard.bind(this)
         this.handleSaveUpdatedCard = this.handleSaveUpdatedCard.bind(this)
+        this.handleCloseModal = this.handleCloseModal.bind(this)
       }
   async componentWillMount () {
     const result = await this.webService.getCards()
@@ -26,15 +27,17 @@ class Card extends Component {
   }
 
   async handleDeleteCard (cardId) {
-    // await this.webService.deleteCard(cardId)
+    await this.webService.deleteCard(cardId)
     const result = this.state.cards.filter(card => card.ID !== cardId)
     this.setState({cards: result})
   }
 
   async handleInsertCard (card) {
-    // const result = await this.webService.postCard(card)
+    const result = await this.webService.postCard(card)
     const newCards = this.state.cards
-    newCards.push(card)
+    let resultCard = card
+    resultCard.ID = result.ID
+    newCards.push(resultCard)
     this.setState({cards: newCards})
   }
 
@@ -47,9 +50,16 @@ class Card extends Component {
       await this.setState({showModal: !this.state.showModal})
   }
 
+  async handleCloseModal () {
+    await this.setState({showModal: !this.state.showModal, editMode: false, editingCard: {}})
+}
+
   async handleSaveUpdatedCard (cardId, card) {
     await this.webService.patchCard(cardId, card)
-    this.setState({editMode: false})
+    const actualCards = this.state.cards
+    const cleanCards = actualCards.filter(card => card.ID !== cardId)
+    const newCards = cleanCards.push(card)
+    this.setState({editMode: false, cards: newCards})
   }
 
 
@@ -67,7 +77,7 @@ class Card extends Component {
             editingCard={this.state.editingCard}
             saveUpdatedCard={this.handleSaveUpdatedCard}
             show={this.state.showModal}
-            close={this.handleShowModal}
+            close={this.handleCloseModal}
             insertCard={this.handleInsertCard}
           />
           
