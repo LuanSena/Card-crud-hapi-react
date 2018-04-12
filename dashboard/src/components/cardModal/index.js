@@ -39,7 +39,7 @@ class CardModal extends Component {
           <Modal.Title>Cadastro do cartão</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <CardRepresentation 
+        <CardRepresentation
           name={this.state.name}
           number={this.state.number} 
           cvv={this.state.cvv}
