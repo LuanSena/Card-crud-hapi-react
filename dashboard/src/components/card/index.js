@@ -4,6 +4,17 @@ import CardTable from '../cardTable'
 import CardModal from '../cardModal'
 
 class Card extends Component {
+    constructor (props) {
+        super(props)
+        this.state = { 
+          showModal: false
+        }
+        this.handleShowModal = this.handleShowModal.bind(this)
+      }
+
+  async handleShowModal () {
+      await this.setState({showModal: !this.state.showModal})
+  }
   render() {
     return (<div>
         <Grid>
@@ -13,7 +24,7 @@ class Card extends Component {
               <Glyphicon glyph="plus" /> Novo cartão
           </Button>
           
-          <CardModal show={true}/>
+          <CardModal show={this.state.showModal} close={this.handleShowModal}/>
           
           <CardTable />
         </Grid>
