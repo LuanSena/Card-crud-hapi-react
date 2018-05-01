@@ -16,3 +16,6 @@ import { createStore } from "redux";
 const Store = createStore(rootReducer);
 
 export default Store;
+
+
+// ref : https://www.valentinog.com/blog/react-redux-tutorial-beginners/
