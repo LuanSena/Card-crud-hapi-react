@@ -1,5 +1,6 @@
 import React from 'react';  
-import { connect } from "react-redux"; 
+import { connect } from "react-redux";
+import SupportInput from './supportInput'
 
 
 const mapStateToProps = state => {
@@ -9,6 +10,7 @@ const mapStateToProps = state => {
 const ConnectedSupportForm = (props) => { 
   return (
       <div>
+          <SupportInput />
     {props.articles.map(el => (
       <h1 key={el.id}>
         {el.name}
