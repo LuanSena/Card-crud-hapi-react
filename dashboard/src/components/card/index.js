@@ -3,7 +3,7 @@ import { Grid, Button, Glyphicon } from 'react-bootstrap'
 import CardTable from '../cardTable'
 import CardModal from '../cardModal'
 import WebService from '../../services/webService';
-// import SupportForm from '../support'
+import SupportForm from '../support'
 import Store from '../support/store'
 import { addArticle } from '../support/actions'
 
@@ -89,7 +89,7 @@ class Card extends Component {
             deleteCard={this.handleDeleteCard}
             updateCard={this.handleUpdateCard} />
         </Grid>
-        {/* <SupportForm /> */}
+        <SupportForm />
       </div>)
   
   }
