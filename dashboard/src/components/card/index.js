@@ -3,7 +3,13 @@ import { Grid, Button, Glyphicon } from 'react-bootstrap'
 import CardTable from '../cardTable'
 import CardModal from '../cardModal'
 import WebService from '../../services/webService';
+// import SupportForm from '../support'
+import Store from '../support/store'
+import { addArticle } from '../support/actions'
 
+
+window.store = Store;
+window.addArticle = addArticle;
 class Card extends Component {
     constructor (props) {
         super(props)
@@ -83,6 +89,7 @@ class Card extends Component {
             deleteCard={this.handleDeleteCard}
             updateCard={this.handleUpdateCard} />
         </Grid>
+        {/* <SupportForm /> */}
       </div>)
   
   }
