@@ -1,20 +1,23 @@
 import React from 'react';  
-import { Provider } from 'react-redux';
+import { connect } from "react-redux"; 
 
-// import FormContainer from './modules/form/form.container';  
-import Store from './store';
 
-const store = Store();
-
-const SupportForm = props => {  
+const mapStateToProps = state => {
+    return { articles: state.articles };
+  };
+  
+const ConnectedSupportForm = (props) => { 
   return (
-    <Provider store={store}>
       <div>
-        what
+    {props.articles.map(el => (
+      <h1 key={el.id}>
+        {el.name}
+      </h1>
+    ))}
       </div>
-    </Provider>
   );
 }
 
+const SupportForm = connect(mapStateToProps)(ConnectedSupportForm)
 
 export default SupportForm
